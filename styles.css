@@ -17,15 +17,14 @@ body {
 
 /* Шапка */
 header {
-    background: url('https://melaniameme.com/offical-meme.svg') no-repeat center center/cover; /* Фоновое изображение */
+    background: url('header-bg.jpg') no-repeat center center/cover;
     color: white;
     padding: 60px 0;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative; /* Для затемнения фона */
+    position: relative;
 }
 
-    /* Затемнение фона (опционально) */
     header::before {
         content: '';
         position: absolute;
@@ -33,13 +32,13 @@ header {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+        background: rgba(0, 0, 0, 0.5);
         z-index: 1;
     }
 
     header .container {
         position: relative;
-        z-index: 2; /* Чтобы текст был поверх затемнения */
+        z-index: 2;
     }
 
     header h1 {
@@ -220,7 +219,54 @@ footer {
             background: #3700b3;
         }
 
-/* Медиа-запросы для мобильных устройств */
+/* Whitepaper */
+#whitepaper {
+    background: #2a2a2a;
+    padding: 40px 0;
+    text-align: center;
+}
+
+    #whitepaper h2 {
+        color: #6200ea;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    #whitepaper p {
+        font-size: 1.1em;
+        color: #ccc;
+        margin-bottom: 20px;
+    }
+
+.coming-soon {
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #6200ea;
+    background: rgba(98, 0, 234, 0.1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Оптимизация для мобильных устройств */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2em;
@@ -260,6 +306,15 @@ footer {
     .step {
         margin-bottom: 20px;
     }
+
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        .social-links a {
+            font-size: 1em;
+        }
 }
 
 @media (max-width: 480px) {
@@ -294,26 +349,28 @@ footer {
     }
 }
 
-/* Кнопка покупки */
-.buy-button {
-    display: inline-block;
-    background: #6200ea;
-    color: white;
-    padding: 15px 30px;
-    font-size: 1.1em;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+.social-media {
+    display: flex;
+    gap: 15px;
+    position: absolute;
+    top: 20px;
+    z-index: 3;
 }
 
-    .buy-button:hover {
-        background: #3700b3;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    .social-media.left {
+        left: 20px;
     }
 
-    .buy-button i {
-        margin-right: 10px;
+    .social-media.right {
+        right: 20px;
     }
+
+    .social-media a {
+        color: white;
+        font-size: 1.5em;
+        transition: color 0.3s ease;
+    }
+
+        .social-media a:hover {
+            color: #ffcc00;
+        }
