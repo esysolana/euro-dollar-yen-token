@@ -16,3 +16,10 @@ function copyText() {
         alert("TOKEN copied to clipboard!");
     });
 }
+
+document.getElementById('subscribeForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = e.target.email.value;
+    alert(`Thank you for subscribing, ${email}!`);
+    e.target.reset();
+});

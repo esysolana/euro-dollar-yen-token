@@ -6,6 +6,8 @@
     <title>€$¥ Token</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <header class="animate__animated animate__fadeInDown">
@@ -18,16 +20,16 @@
         </div>
     </header>
 
-    <section id="about" class="animate__animated animate__fadeInLeft">
+    <section id="about" data-aos="fade-up">
         <div class="container">
             <h2>About €$¥</h2>
             <p>€$¥ – The New Meme Cryptocurrency That Could Take Over the Market! 🚀💰</p>
             <p>In the world of crypto, meme tokens often become unexpected stars. €$¥ isn’t just a mix of currency symbols—it’s a potential hit, combining humor, hype, and investment opportunities. Could this meme turn into the next big financial sensation? 😏</p>
-            <p>Stay tuned—€$¥ might be the next DOGE or PEPE! 🔥</p>
+            <p>Stay tuned — €$¥ might be the next DOGE or PEPE! 🔥</p>
         </div>
     </section>
 
-    <section id="copy-links" class="animate__animated animate__fadeInRight">
+    <section id="copy-links" data-aos="fade-up">
         <div class="container">
             <h2>Quick Links</h2>
             <p>Click the link below to copy it:</p>
@@ -41,36 +43,69 @@
         </div>
     </section>
 
-    <section id="features" class="animate__animated animate__fadeInLeft">
+    <section id="features" data-aos="fade-up">
         <div class="container">
             <h2>Features</h2>
             <ul>
-                <li>🚀 Fast Transactions</li>
-                <li>💸 Low Fees</li>
-                <li>🔒 Secure & Decentralized</li>
+                <li><i class="fas fa-rocket"></i> 🚀 Fast Transactions</li>
+                <li><i class="fas fa-coins"></i> 💸 Low Fees</li>
+                <li><i class="fas fa-shield-alt"></i> 🔒 Secure & Decentralized</li>
             </ul>
         </div>
     </section>
 
-    <section id="get-started" class="animate__animated animate__fadeInUp">
+    <section id="roadmap" data-aos="fade-up">
         <div class="container">
-            <h2>Get Started</h2>
-            <p>Join the €$¥ community today and start transacting with the future of money.</p>
-            <button id="buyButton">Buy €$¥</button>
+            <h2>Roadmap</h2>
+            <div class="roadmap-steps">
+                <div class="step">
+                    <h3>Q1 2024</h3>
+                    <p>Launch of €$¥ Token and initial marketing campaign.</p>
+                </div>
+                <div class="step">
+                    <h3>Q2 2024</h3>
+                    <p>Listing on major exchanges and community growth.</p>
+                </div>
+                <div class="step">
+                    <h3>Q3 2024</h3>
+                    <p>Development of ecosystem and partnerships.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="animate__animated animate__fadeInUp">
+    <section id="subscribe" data-aos="fade-up">
+        <div class="container">
+            <h2>Subscribe for Updates</h2>
+            <form id="subscribeForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="community" data-aos="fade-up">
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <p>Be part of the €$¥ revolution! Follow us on social media:</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-X"></i> X </a>
+                <a href="#" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="#" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </section>
+
+    <footer data-aos="fade-up">
         <div class="container">
             <p>&copy; 2025 €$¥ Token. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" target="_blank">Twitter</a>
-                <a href="#" target="_blank">Telegram</a>
-                <a href="#" target="_blank">Discord</a>
-            </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
