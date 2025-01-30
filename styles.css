@@ -17,7 +17,7 @@ body {
 
 /* Шапка */
 header {
-    background: url('https://limewire.com/d/ed9d88e8-25f3-487e-918b-e0d59fc7915e#ghqu-2ltjNqxk11p4mCxyYAhSitB0fG5m66aN968YlQ') no-repeat center center/cover; /* Фоновое изображение */
+    background: url('https://melaniameme.com/offical-meme.svg') no-repeat center center/cover; /* Фоновое изображение */
     color: white;
     padding: 60px 0;
     text-align: center;
@@ -293,3 +293,27 @@ footer {
         padding: 6px 12px;
     }
 }
+
+/* Кнопка покупки */
+.buy-button {
+    display: inline-block;
+    background: #6200ea;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+    .buy-button:hover {
+        background: #3700b3;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .buy-button i {
+        margin-right: 10px;
+    }
