@@ -2,136 +2,362 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>€$¥ Token</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>€ $ ¥</title>
+    <style>
+        /* Reset margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Loading screen styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+        }
+
+        #loading-text {
+            font-family: 'Courier New', monospace;
+            font-size: 10em; /* Larger digits */
+            color: #00ff00; /* Green color, like in "The Matrix" */
+            text-shadow: 0 0 10px #00ff00;
+            animation: blink 1s infinite, matrixEffect 2s linear infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes matrixEffect {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        /* White flash animation */
+        @keyframes flash {
+            0% {
+                background-color: #000;
+            }
+
+            50% {
+                background-color: #fff;
+            }
+
+            100% {
+                background-color: #000;
+            }
+        }
+
+        .flash-effect {
+            animation: flash 0.5s ease-in-out;
+        }
+
+        /* Main website styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #add8e6; /* Light blue text color */
+            overflow-x: hidden; /* Hide horizontal scroll */
+            position: relative;
+        }
+
+        /* Neon border lines */
+        .neon-border {
+            position: fixed;
+            background-color: #00ff00;
+            box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            z-index: 999;
+        }
+
+        .neon-top {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+        }
+
+        .neon-bottom {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+        }
+
+        .neon-left {
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+        }
+
+        .neon-right {
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+        }
+
+        header, section, footer {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+            header h1 {
+                margin: 0;
+                font-size: 2.5em;
+                text-shadow: 0 0 5px rgba(255, 0, 255, 0.8), 0 0 10px rgba(255, 0, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.4);
+            }
+
+        .hero {
+            background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+            .hero h2 {
+                font-size: 2em;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 15px;
+                border-radius: 10px;
+                text-shadow: 0 0 5px rgba(255, 0, 255, 0.8), 0 0 10px rgba(255, 0, 255, 0.6);
+            }
+
+        .social-links, .token-info, .wallet-dexscan, .whitepaper {
+            padding: 20px;
+            text-align: center;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            max-width: 90%;
+        }
+
+            .social-links a, .token-info a, .wallet-dexscan a, .whitepaper a {
+                color: #add8e6; /* Light blue text color */
+                text-decoration: none;
+                font-size: 1.2em;
+                transition: color 0.3s ease;
+            }
+
+                .social-links a:hover, .token-info a:hover, .wallet-dexscan a:hover, .whitepaper a:hover {
+                    color: #ffcc00;
+                    text-shadow: 0 0 5px rgba(255, 204, 0, 0.8), 0 0 10px rgba(255, 204, 0, 0.6);
+                }
+
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+            footer p {
+                margin: 0;
+                font-size: 1.2em;
+                color: #d3d3d3; /* Light gray text color */
+            }
+
+        /* Neon text effects */
+        .neon-text-green {
+            color: #00ff00; /* Green color, like exchange candles */
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+        }
+
+        .neon-text-red {
+            color: #ff0000; /* Red color, like exchange candles */
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
+        }
+
+        .neon-text-blue {
+            color: #0000ff; /* Blue color */
+            text-shadow: 0 0 5px #0000ff, 0 0 10px #0000ff, 0 0 20px #0000ff;
+        }
+
+        .neon-text-purple {
+            color: #800080; /* Purple color */
+            text-shadow: 0 0 5px #800080, 0 0 10px #800080, 0 0 20px #800080;
+        }
+
+        /* Video styles */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Video in the background */
+            overflow: hidden;
+        }
+
+            .video-container video {
+                min-width: 100%;
+                min-height: 100%;
+                object-fit: cover; /* Video will cover the entire screen */
+            }
+
+        /* Unmute button styles */
+        #unmute-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+            #unmute-button:hover {
+                background-color: #00cc00;
+            }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 1.5em;
+            }
+
+            .social-links, .token-info, .wallet-dexscan, .whitepaper {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="animate__animated animate__fadeInDown">
-        <div class="container">
-            <!-- Социальные сети в левом верхнем углу -->
-            <div class="social-media left">
-                <a href="https://x.com/_S_O_L_A_N_A_?t=fKPBDC4xmtSxcD8nkxKmlg&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://t.me/coinSolanameme" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/B9Eqe49B" target="_blank"><i class="fab fa-discord"></i></a>
-            </div>
+    <!-- Loading screen -->
+    <div id="loading-screen">
+        <div id="loading-text">5069</div>
+    </div>
 
-            <div class="logo-title">
-                <img src="logo.png" alt="€$¥ Token Logo" class="logo">
-                <h1>€$¥ Token</h1>
-            </div>
+    <!-- Neon border lines -->
+    <div class="neon-border neon-top"></div>
+    <div class="neon-border neon-bottom"></div>
+    <div class="neon-border neon-left"></div>
+    <div class="neon-border neon-right"></div>
 
-            <!-- Социальные сети в правом верхнем углу -->
-            <div class="social-media right">
-                <a href="https://x.com/_S_O_L_A_N_A_?t=fKPBDC4xmtSxcD8nkxKmlg&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://t.me/coinSolanameme" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/B9Eqe49B" target="_blank"><i class="fab fa-discord"></i></a>
-            </div>
-
-            <p>Your Gateway to the Future of Cryptocurrency</p>
-        </div>
+    <!-- Main content of your website -->
+    <header>
+        <h1 class="neon-text-green">€ $ ¥</h1>
     </header>
 
-    <section id="about" data-aos="fade-up">
-        <div class="container">
-            <h2>About €$¥</h2>
-            <p>€$¥ – The New Meme Cryptocurrency That Could Take Over the Market! 🚀💰</p>
-            <p>In the world of crypto, meme tokens often become unexpected stars. €$¥ isn’t just a mix of currency symbols—it’s a potential hit, combining humor, hype, and investment opportunities. Could this meme turn into the next big financial sensation? 😏</p>
-            <p>Stay tuned—€$¥ might be the next DOGE or PEPE! 🔥</p>
-        </div>
+    <!-- Background video -->
+    <div class="video-container">
+        <video id="background-video" autoplay muted loop>
+            <source src="Bitcoin - Pump It Up (2).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Unmute button -->
+    <button id="unmute-button">Unmute</button>
+
+    <section class="hero">
+        <h2 class="neon-text-green">
+            € $ ¥
+        </h2>
     </section>
 
-    <section id="copy-links" data-aos="fade-up">
-        <div class="container">
-            <h2>Quick Links</h2>
-            <p>Click the link below to copy it:</p>
-            <div class="copy-text" onclick="copyLink()">
-                https://coinmarketcap.com/dexscan/solana/6JkKyjvc78mbDA8nr1JjzBCp2tEFZYtUEnaf9BpCAft9/
-            </div>
-            <p>Click to copy the TOKEN address:</p>
-            <div class="copy-text" onclick="copyText()">
-                HzhdH8FTQSfNHeQQf1oueqwTzw7qSXxncPixmJnopump
-            </div>
-        </div>
-    </section>
+    <div class="social-links">
+        <a href="https://x.com/_S_O_L_A_N_A_?t=fKPBDC4xmtSxcD8nkxKmlg&s=09" target="_blank">𝕏</a>
+    </div>
 
-    <section id="features" data-aos="fade-up">
-        <div class="container">
-            <h2>Features</h2>
-            <ul>
-                <li><i class="fas fa-rocket"></i> 🚀 Fast Transactions</li>
-                <li><i class="fas fa-coins"></i> 💸 Low Fees</li>
-                <li><i class="fas fa-shield-alt"></i> 🔒 Secure & Decentralized</li>
-            </ul>
-        </div>
-    </section>
+    <div class="token-info">
+        <h3>Meme Token on Solana</h3>
+        <p>Token Address: <code>HzhdH8FTQSfNHeQQf1oueqwTzw7qSXxncPixmJnopump</code></p>
+        <p>Buy the token on:</p>
+        <a href="https://pump.fun/coin/HzhdH8FTQSfNHeQQf1oueqwTzw7qSXxncPixmJnopump" target="_blank">Buy on Pump.fun</a>
+    </div>
 
-    <section id="roadmap" data-aos="fade-up">
-        <div class="container">
-            <h2>Roadmap</h2>
-            <div class="roadmap-steps">
-                <div class="step">
-                    <h3>Q1 2025</h3>
-                    <p>Launch of €$¥ Token and initial marketing campaign.</p>
-                </div>
-                <div class="step">
-                    <h3>Q2 2025</h3>
-                    <p>Listing on major exchanges and community growth.</p>
-                </div>
-                <div class="step">
-                    <h3>Q3 2025</h3>
-                    <p>Development of ecosystem and partnerships.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="wallet-dexscan">
+        <h3>Wallet and Analytics</h3>
+        <p>Use the <strong>Phantom</strong> wallet to store and manage your tokens on Solana.</p>
+        <a href="https://phantom.com/" target="_blank">Download Phantom</a>
+        <p>Check token information on <strong>CoinMarketCap DexScan</strong>:</p>
+        <a href="https://coinmarketcap.com/dexscan/solana/6JkKyjvc78mbDA8nr1JjzBCp2tEFZYtUEnaf9BpCAft9/" target="_blank">Go to DexScan</a>
+    </div>
 
-    <!-- Новый раздел Whitepaper -->
-    <section id="whitepaper" data-aos="fade-up">
-        <div class="container">
-            <h2>Whitepaper</h2>
-            <p>Our detailed Whitepaper is coming soon! Stay tuned to learn more about the technology, vision, and future of €$¥ Token.</p>
-            <div class="coming-soon">
-                <span>Coming Soon</span>
-            </div>
-        </div>
-    </section>
+    <div class="whitepaper">
+        <h3>Whitepaper</h3>
+        <p>Read the official project document:</p>
+        <a href="whitepaper.pdf" target="_blank">Open Whitepaper</a>
+    </div>
 
-    <section id="get-started" data-aos="fade-up">
-        <div class="container">
-            <h2>Get Started</h2>
-            <p>Join the €$¥ community today and start transacting with the future of money.</p>
-            <a href="https://pump.fun/coin/HzhdH8FTQSfNHeQQf1oueqwTzw7qSXxncPixmJnopump" class="buy-button" target="_blank">
-                <i class="fas fa-shopping-cart"></i> Buy €$¥ Now
-            </a>
-        </div>
-    </section>
-
-    <section id="community" data-aos="fade-up">
-        <div class="container">
-            <h2>Join Our Community</h2>
-            <p>Be part of the €$¥ revolution! Follow us on social media:</p>
-            <div class="social-links">
-                <a href="https://x.com/_S_O_L_A_N_A_?t=fKPBDC4xmtSxcD8nkxKmlg&s=09" target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a>
-                <a href="https://t.me/coinSolanameme" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-                <a href="https://discord.gg/B9Eqe49B" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-            </div>
-        </div>
-    </section>
-
-    <footer data-aos="fade-up">
-        <div class="container">
-            <p>&copy; 2025 €$¥ Token. All rights reserved.</p>
-        </div>
+    <footer>
+        <p>
+            <span class="neon-text-green">€ $ ¥ ©</span>
+            <span class="neon-text-green">2025 € $ ¥. All rights reserved.</span>
+        </p>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        // Script for smooth transition from loading screen to main site
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingScreen = document.getElementById('loading-screen');
+            const loadingText = document.getElementById('loading-text');
+
+            // Delay before starting the fade-out
+            setTimeout(() => {
+                // Add the flash effect
+                loadingScreen.classList.add('flash-effect');
+
+                // Remove the loading screen after the flash
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0'; // Fade out
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none'; // Remove the loading screen
+                    }, 2000); // Time to complete the animation
+                }, 500); // Time to complete the flash
+            }, 3000); // Time to show the digits 5069 (3 seconds)
+        });
+
+        // Script for unmuting the video
+        const unmuteButton = document.getElementById('unmute-button');
+        const backgroundVideo = document.getElementById('background-video');
+
+        unmuteButton.addEventListener('click', () => {
+            if (backgroundVideo.muted) {
+                backgroundVideo.muted = false;
+                unmuteButton.textContent = 'Mute';
+            } else {
+                backgroundVideo.muted = true;
+                unmuteButton.textContent = 'Unmute';
+            }
+        });
     </script>
 </body>
 </html>
