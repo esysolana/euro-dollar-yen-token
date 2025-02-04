@@ -19,40 +19,94 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000;
+            background-image: url('choice.png'); /* Фоновое изображение из Матрицы */
+            background-size: cover;
+            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
             opacity: 1;
             transition: opacity 2s ease-in-out;
+            overflow: hidden;
         }
 
-        #loading-text {
-            font-family: 'Courier New', monospace;
-            font-size: 10em; /* Larger digits */
-            color: #00ff00; /* Green color, like in "The Matrix" */
-            text-shadow: 0 0 10px #00ff00;
-            animation: blink 1s infinite, matrixEffect 2s linear infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
+            /* Подсветка таблеток неоном */
+            #loading-screen::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle, rgba(0, 255, 0, 0.3) 0%, rgba(0, 255, 0, 0.1) 50%, transparent 70%);
+                z-index: -1;
+                animation: neonGlow 2s infinite alternate;
             }
 
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes matrixEffect {
+        @keyframes neonGlow {
             0% {
-                transform: translateY(0);
+                opacity: 0.5;
             }
 
             100% {
-                transform: translateY(-100%);
+                opacity: 1;
+            }
+        }
+
+        /* Main logo (X) with neon glow */
+        #main-logo {
+            width: 200px;
+            height: 200px;
+            filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00ff00) drop-shadow(0 0 40px #00ff00);
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 0.5s forwards, glow 2s ease-in-out infinite alternate;
+        }
+
+        /* Fade-in animation for logo */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Neon glow animation */
+        @keyframes glow {
+            0% {
+                filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00ff00) drop-shadow(0 0 40px #00ff00);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 20px #00ff00) drop-shadow(0 0 40px #00ff00) drop-shadow(0 0 60px #00ff00);
+            }
+        }
+
+        /* Loading text */
+        #loading-text {
+            font-family: 'Courier New', monospace;
+            font-size: 2em;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            opacity: 0;
+            animation: revealText 1s ease-in-out 2s forwards;
+            margin-top: 20px;
+        }
+
+        @keyframes revealText {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -247,6 +301,30 @@
                 background-color: #00cc00;
             }
 
+        /* Новые стили для email и ссылки на Ledger */
+        .wallet-dexscan p.email {
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #add8e6;
+        }
+
+        .wallet-dexscan a.ledger-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #00ff00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .wallet-dexscan a.ledger-link:hover {
+                background-color: #00cc00;
+                box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            }
+
         @media (max-width: 768px) {
             .hero h2 {
                 font-size: 1.5em;
@@ -255,13 +333,22 @@
             .social-links, .token-info, .wallet-dexscan, .whitepaper {
                 padding: 15px;
             }
+
+            #main-logo {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Loading screen -->
     <div id="loading-screen">
-        <div id="loading-text">5069</div>
+        <!-- Main logo (X) with neon glow -->
+        <img id="main-logo" src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X (Twitter)">
+
+        <!-- Loading text -->
+        <div id="loading-text">Connecting the Crypto World...</div>
     </div>
 
     <!-- Neon border lines -->
@@ -309,8 +396,15 @@
         <a href="https://phantom.com/" target="_blank">Download Phantom</a>
         <p>Check token information on <strong>CoinMarketCap DexScan</strong>:</p>
         <a href="https://coinmarketcap.com/dexscan/solana/6JkKyjvc78mbDA8nr1JjzBCp2tEFZYtUEnaf9BpCAft9/" target="_blank">Go to DexScan</a>
-    </div>
 
+        <!-- Добавленный email -->
+        <p class="email">Contact us: <a href="mailto:esysolana@gmail.com" class="neon-text-green">esysolana@gmail.com</a></p>
+
+        <!-- Добавленная ссылка на Ledger -->
+        <a href="https://shop.ledger.com/ru/pages/referral-program?referral_code=CR0EJ02D70NAC" target="_blank" class="ledger-link">
+            Secure your assets with Ledger
+        </a>
+    </div>
 
     <footer>
         <p>
@@ -323,7 +417,6 @@
         // Script for smooth transition from loading screen to main site
         document.addEventListener('DOMContentLoaded', function () {
             const loadingScreen = document.getElementById('loading-screen');
-            const loadingText = document.getElementById('loading-text');
 
             // Delay before starting the fade-out
             setTimeout(() => {
@@ -334,10 +427,10 @@
                 setTimeout(() => {
                     loadingScreen.style.opacity = '0'; // Fade out
                     setTimeout(() => {
-                        loadingScreen.style.display = 'none'; // Remove the loading screen
+                        loadingScreen.remove(); // Remove the loading screen from DOM
                     }, 2000); // Time to complete the animation
                 }, 500); // Time to complete the flash
-            }, 3000); // Time to show the digits 5069 (3 seconds)
+            }, 5000); // Time to show the animation (5 seconds)
         });
 
         // Script for unmuting the video
